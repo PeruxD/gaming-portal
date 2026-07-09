@@ -22,8 +22,8 @@ include 'config/constants.php';
                     <li><a href="profile.php">Mi Perfil</a></li>
                     <li><a href="logout.php">Cerrar Sesión</a></li>
                 <?php else: ?>
-                    <li><a href="login.php" class="btn-login">Iniciar Sesión</a></li>
-                    <li><a href="register.php" class="btn-register">Registrarse</a></li>
+                    <li><a href="auth/login.php" class="btn-login">Iniciar Sesión</a></li>
+                    <li><a href="auth/register.php" class="btn-register">Registrarse</a></li>
                 <?php endif; ?>
             </ul>
             
