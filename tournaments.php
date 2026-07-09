@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
     if (mysqli_num_rows($check_result) == 0) {
         $insert = "INSERT INTO tournament_participants (tournament_id, user_id) VALUES ($tournament_id, $user_id)";
         if (mysqli_query($conn, $insert)) {
-            echo "<div style='background: #006B3F; color: #90EE90; padding: 1rem; border-radius: 5px; margin: 1rem 0;'>✅ Registrado en el torneo</div>";
+            echo "<div style='background: #006B3F; color: #90EE90; padding: 1rem; border-radius: 5px; margin: 1rem 0;'>Registrado en el torneo</div>";
         }
     }
 }
@@ -205,14 +205,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
 <body>
     <div class="container">
         <div class="tournaments-header">
-            <h2>🏅 Torneos Disponibles</h2>
+            <h2>Torneos Disponibles</h2>
             <p>Participa en emocionantes competiciones y gana premios</p>
         </div>
 
         <!-- FILTERS -->
         <div class="tournament-filters">
             <a href="?status=all" class="<?php echo $status_filter == 'all' ? 'active' : ''; ?>">Todos</a>
-            <a href="?status=upcoming" class="<?php echo $status_filter == 'upcoming' ? 'active' : ''; ?>">Próximamente</a>
+            <a href="?status=upcoming" class="<?php echo $status_filter == 'upcoming' ? 'active' : ''; ?>">Proximamente</a>
             <a href="?status=ongoing" class="<?php echo $status_filter == 'ongoing' ? 'active' : ''; ?>">En Vivo</a>
             <a href="?status=completed" class="<?php echo $status_filter == 'completed' ? 'active' : ''; ?>">Completados</a>
         </div>
@@ -227,27 +227,27 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                     $start_date = date('d/m/Y H:i', strtotime($tournament['start_date']));
                     
                     echo "<div class='tournament-card'>
-                            <div class='tournament-image'>🎮</div>
+                            <div class='tournament-image'>TORNEO</div>
                             <div class='tournament-content'>
                                 <h3 class='tournament-title'>" . htmlspecialchars($tournament['title']) . "</h3>
-                                <span class='tournament-status $status_class">$status_text</span>
+                                <span class='tournament-status " . $status_class . "'>" . $status_text . "</span>
                                 
                                 <div class='tournament-info'>
                                     <div class='tournament-info-item'>
-                                        <span>📅 Inicio:</span>
-                                        <strong>$start_date</strong>
+                                        <span>Inicio:</span>
+                                        <strong>" . $start_date . "</strong>
                                     </div>
                                     <div class='tournament-info-item'>
-                                        <span>👥 Participantes:</span>
+                                        <span>Participantes:</span>
                                         <strong>" . $tournament['participants'] . "/" . $tournament['max_participants'] . "</strong>
                                     </div>
                                     <div class='tournament-info-item'>
-                                        <span>🎮 Juego:</span>
+                                        <span>Juego:</span>
                                         <strong>Juego #" . $tournament['game_id'] . "</strong>
                                     </div>
                                 </div>
 
-                                <div class='tournament-prize'>💰 \$" . number_format($tournament['prize_pool'], 2) . "</div>
+                                <div class='tournament-prize'>$" . number_format($tournament['prize_pool'], 2) . "</div>
 
                                 <div class='tournament-actions'>";
                     
@@ -267,8 +267,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_SESSION['user_id'])) {
                 }
             } else {
                 echo "<div style='grid-column: 1/-1; text-align: center; padding: 3rem; color: #AAA;'>
-                        <h3>😕 No hay torneos disponibles</h3>
-                        <p>Vuelve más tarde para ver nuevos torneos</p>
+                        <h3>No hay torneos disponibles</h3>
+                        <p>Vuelve mas tarde para ver nuevos torneos</p>
                     </div>";
             }
             ?>
