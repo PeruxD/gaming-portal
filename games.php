@@ -208,19 +208,19 @@ $categories = mysqli_query($conn, $cat_query);
 <body>
     <div class="container">
         <div class="games-header">
-            <h2>🎮 Catálogo de Juegos</h2>
+            <h2>Catalogo de Juegos</h2>
             <div class="sort-options">
                 <a href="?sort=featured" class="<?php echo $sort == 'featured' ? 'active' : ''; ?>">Destacados</a>
                 <a href="?sort=rating" class="<?php echo $sort == 'rating' ? 'active' : ''; ?>">Mejor Calificados</a>
-                <a href="?sort=newest" class="<?php echo $sort == 'newest' ? 'active' : ''; ?>">Más Nuevo</a>
-                <a href="?sort=popular" class="<?php echo $sort == 'popular' ? 'active' : ''; ?>">Más Popular</a>
+                <a href="?sort=newest" class="<?php echo $sort == 'newest' ? 'active' : ''; ?>">Mas Nuevo</a>
+                <a href="?sort=popular" class="<?php echo $sort == 'popular' ? 'active' : ''; ?>">Mas Popular</a>
             </div>
         </div>
 
         <div class="games-container">
             <!-- FILTERS SIDEBAR -->
             <aside class="filters-sidebar">
-                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">🔍 Filtros</h3>
+                <h3 style="color: var(--primary-color); margin-bottom: 1.5rem;">Filtros</h3>
                 <form method="GET" action="games.php">
                     <div class="filter-group">
                         <label>Buscar Juego</label>
@@ -228,13 +228,13 @@ $categories = mysqli_query($conn, $cat_query);
                     </div>
 
                     <div class="filter-group">
-                        <label>Categoría</label>
+                        <label>Categoria</label>
                         <select name="category">
-                            <option value="">Todas las categorías</option>
+                            <option value="">Todas las categorias</option>
                             <?php
                             while ($cat = mysqli_fetch_assoc($categories)) {
                                 $selected = $category == $cat['id'] ? 'selected' : '';
-                                echo "<option value='{$cat['id']}' $selected>{$cat['name']}</option>";
+                                echo "<option value='" . $cat['id'] . "' " . $selected . ">" . $cat['name'] . "</option>";
                             }
                             ?>
                         </select>
@@ -255,8 +255,8 @@ $categories = mysqli_query($conn, $cat_query);
                                     <h3>" . htmlspecialchars($game['title']) . "</h3>
                                     <p style='font-size: 0.85rem; color: #AAA; margin: 0.5rem 0;'>" . htmlspecialchars(substr($game['description'], 0, 80)) . "...</p>
                                     <div class='game-meta'>
-                                        <span class='rating'>⭐ " . $game['rating'] . "/10</span>
-                                        <span class='players'>👥 " . number_format($game['players']) . "</span>
+                                        <span class='rating'> " . $game['rating'] . "/10</span>
+                                        <span class='players'> " . number_format($game['players']) . "</span>
                                     </div>
                                     <a href='game-detail.php?id=" . $game['id'] . "' class='btn btn-small' style='width: 100%; text-align: center; margin-top: 1rem;'>Ver Detalles</a>
                                 </div>";
@@ -269,30 +269,30 @@ $categories = mysqli_query($conn, $cat_query);
                         <div class="pagination">
                             <?php
                             $query_params = !empty($search) ? "&search=" . urlencode($search) : "";
-                            $query_params .= !empty($category) ? "&category=$category" : "";
-                            $query_params .= "&sort=$sort";
+                            $query_params .= !empty($category) ? "&category=" . $category : "";
+                            $query_params .= "&sort=" . $sort;
 
                             if ($page > 1) {
-                                echo "<a href='?page=1$query_params'>« Primera</a>";
-                                echo "<a href='?page=" . ($page - 1) . "$query_params">‹ Anterior</a>";
+                                echo "<a href='?page=1" . $query_params . "'>Primera</a>";
+                                echo "<a href='?page=" . ($page - 1) . $query_params . "'>Anterior</a>";
                             }
 
                             for ($i = max(1, $page - 2); $i <= min($total_pages, $page + 2); $i++) {
                                 $active = $i == $page ? 'active' : '';
-                                echo "<a href='?page=$i$query_params' class='$active'>$i</a>";
+                                echo "<a href='?page=" . $i . $query_params . "' class='" . $active . "'>" . $i . "</a>";
                             }
 
                             if ($page < $total_pages) {
-                                echo "<a href='?page=" . ($page + 1) . "$query_params">Siguiente ›</a>";
-                                echo "<a href='?page=$total_pages$query_params">Última »</a>";
+                                echo "<a href='?page=" . ($page + 1) . $query_params . "'>Siguiente</a>";
+                                echo "<a href='?page=" . $total_pages . $query_params . "'>Ultima</a>";
                             }
                             ?>
                         </div>
                     <?php endif; ?>
                 <?php else: ?>
                     <div class="no-results">
-                        <h3>😕 No se encontraron juegos</h3>
-                        <p>Intenta con otros filtros o búsqueda</p>
+                        <h3>No se encontraron juegos</h3>
+                        <p>Intenta con otros filtros o busqueda</p>
                     </div>
                 <?php endif; ?>
             </div>
