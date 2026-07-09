@@ -1,3 +1,7 @@
+<?php
+$base_url = '/3/';
+?>
+
 <footer class="main-footer">
     <div class="footer-content">
         <div class="footer-section">
@@ -14,10 +18,10 @@
         <div class="footer-section">
             <h4>Enlaces Rápidos</h4>
             <ul>
-                <li><a href="index.php">Inicio</a></li>
-                <li><a href="games.php">Juegos</a></li>
-                <li><a href="ranking.php">Ranking</a></li>
-                <li><a href="tournaments.php">Torneos</a></li>
+                <li><a href="<?php echo $base_url; ?>index.php">Inicio</a></li>
+                <li><a href="<?php echo $base_url; ?>games.php">Juegos</a></li>
+                <li><a href="<?php echo $base_url; ?>ranking.php">Ranking</a></li>
+                <li><a href="<?php echo $base_url; ?>tournaments.php">Torneos</a></li>
             </ul>
         </div>
         
@@ -45,4 +49,4 @@
     </div>
 </footer>
 
-<script src="js/main.js"></script>
+<script src="<?php echo $base_url; ?>js/main.js"></script>
