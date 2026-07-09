@@ -1,5 +1,5 @@
 <?php
-include 'config/constants.php';
+include '../config/constants.php';
 ?>
 
 <header class="main-header">
