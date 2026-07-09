@@ -42,7 +42,7 @@ include 'includes/header.php';
                             <p>" . htmlspecialchars($game['description']) . "</p>
                             <div class='game-meta'>
                                 <span class='rating'>⭐ " . $game['rating'] . "/10</span>
-                                <span class='players">👥 " . $game['players'] . " jugadores</span>
+                                <span class='players'>👥 " . $game['players'] . " jugadores</span>
                             </div>
                             <a href='game.php?id=" . $game['id'] . "' class='btn btn-small'>Ver Juego</a>
                         </div>";
